@@ -14,6 +14,7 @@
     <form method="POST" action="testrsa">
         <textarea id="text" name="text">Enter text here...</textarea>
         </br>
+        <input id="publicKey" name="publicKey" type="hidden" value="${publicKey}">
         <input type="submit" value="Submit">
     </form>
 </body>
