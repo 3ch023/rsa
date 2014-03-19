@@ -1,39 +1,31 @@
 <html>
 <head>
-    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"/>
-    <script type="javascript">
-    $( document ).ready(function() {
-      alert('mimi');
-    });
-    </script> -->
-
     <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-        <script src="bin/jsencrypt.min.js"></script>
+        <script src="/rsa/jsencrypt.js"></script>
         <script type="text/javascript">
-
-          // Call this code when the page is done loading.
           $(function() {
+            $('#submit').click(function() {
 
-            // Run a quick encryption/decryption when they click.
-            $('#testme').click(function() {
-
+            alert('mimi');
               // Encrypt with the public key...
               var encrypt = new JSEncrypt();
-              encrypt.setPublicKey($('#pubkey').val());
-              var encrypted = encrypt.encrypt($('#input').val());
+              encrypt.setPublicKey($('#publicKey').val());
+              var encrypted = encrypt.encrypt($('#text').val());
+              $('#text').val(encrypted);
 
-              // Decrypt with the private key...
+              /* Decrypt with the private key...
               var decrypt = new JSEncrypt();
               decrypt.setPrivateKey($('#privkey').val());
               var uncrypted = decrypt.decrypt(encrypted);
 
               // Now a simple check to see if the round-trip worked.
-              if (uncrypted == $('#input').val()) {
+              if (uncrypted == $('#text').val()) {
                 alert('It works!!!');
               }
               else {
                 alert('Something went wrong....');
               }
+              */
             });
           });
     </script>
@@ -46,7 +38,7 @@
         </br>
         <input type="hidden" id="publicKey" name="publicKey"
             value="<%= request.getAttribute("publicKey") %>">
-        <input type="submit" value="Submit">
+        <input type="submit" id="submit" value="Submit">
     </form>
 </body>
 </html>
