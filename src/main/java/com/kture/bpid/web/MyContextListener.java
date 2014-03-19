@@ -15,12 +15,7 @@ public class MyContextListener implements ServletContextListener {
         ServletContext context = event.getServletContext();
 
         RSAChiper chiper = new RSAChiper();
-        //TODO
-        String publicKey = chiper.getPublicKey().toString();
-        String privateKey = chiper.getPrivateKey().toString();
-
-        context.setAttribute("publicKey", publicKey);
-        context.setAttribute("privateKey", privateKey);
+        context.setAttribute("RSAChiper", chiper);
     }
 
     @Override

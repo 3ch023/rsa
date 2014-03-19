@@ -23,6 +23,10 @@ public class RSAChiper {
 
     }
 
+    public String decodeText(String encodedText) {
+        return encodedText;
+    }
+
     private void decryptData(byte[] data) throws IOException {
         byte[] descryptedData = null;
 

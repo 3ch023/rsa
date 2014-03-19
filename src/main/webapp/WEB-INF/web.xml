@@ -6,16 +6,16 @@
   <display-name>Archetype Created Web Application</display-name>
 
     <welcome-file-list>
-        <welcome-file>Welcome</welcome-file>
+        <welcome-file>testrsa</welcome-file>
     </welcome-file-list>
 
     <servlet>
-        <servlet-name>Welcome</servlet-name>
+        <servlet-name>welcome</servlet-name>
         <servlet-class>com.kture.bpid.web.WelcomeServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Welcome</servlet-name>
+        <servlet-name>welcome</servlet-name>
         <url-pattern>/testrsa</url-pattern>
     </servlet-mapping>
 
