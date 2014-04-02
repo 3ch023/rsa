@@ -95,8 +95,8 @@ public class ChatServlet extends HttpServlet {
         String user = request.getParameter("user");
         String publicKey = request.getParameter("publicKey");
 
-        System.out.println(user.toUpperCase() + ": sends message [" + text);
-        System.out.println("PublicKey [" + publicKey + "]");
+        System.out.println(user.toUpperCase() + ": sends message " + text);
+        System.out.println("PublicKey " + publicKey);
         if(count == 2) {
             try {
                 //System.out.println("Clear text: " + text);
