@@ -49,29 +49,27 @@ public class LoginServlet extends HttpServlet {
         byte[] publicKey;
 
         try {
-
-        switch (count) {
-            case 0:
-                context.setAttribute("count", ++count);
-                KeyPair aliceKpair = dhUtil.getAliceKpair(dhParameterSpec);
-                publicKey = aliceKpair.getPublic().getEncoded();
-                request.setAttribute("publicKey", new String(publicKey, "UTF-8"));
-                request.setAttribute("user", "Alice");
-                context.getRequestDispatcher(MESSAGE_JSP).forward(request, response);
-                break;
-            case 1:
-                context.setAttribute("count", ++count);
-                KeyPair bobKpair = dhUtil.getBobKpair(dhParameterSpec);
-                publicKey = bobKpair.getPublic().getEncoded();
-                dhUtil.genSecret();
-                request.setAttribute("publicKey", new String(publicKey, "UTF-8"));
-                request.setAttribute("user", "Bob");
-                context.getRequestDispatcher(MESSAGE_JSP).forward(request, response);
-                break;
-            default:
-                response.sendRedirect(ERROR_JSP);
-        }
-
+            switch (count) {
+                case 0:
+                    context.setAttribute("count", ++count);
+                    KeyPair aliceKpair = dhUtil.getAliceKpair(dhParameterSpec);
+                    publicKey = aliceKpair.getPublic().getEncoded();
+                    request.setAttribute("publicKey", new String(publicKey, "UTF-8"));
+                    request.setAttribute("user", "Alice");
+                    context.getRequestDispatcher(MESSAGE_JSP).forward(request, response);
+                    break;
+                case 1:
+                    context.setAttribute("count", ++count);
+                    KeyPair bobKpair = dhUtil.getBobKpair(dhParameterSpec);
+                    publicKey = bobKpair.getPublic().getEncoded();
+                    dhUtil.genSecret();
+                    request.setAttribute("publicKey", new String(publicKey, "UTF-8"));
+                    request.setAttribute("user", "Bob");
+                    context.getRequestDispatcher(MESSAGE_JSP).forward(request, response);
+                    break;
+                default:
+                    response.sendRedirect(ERROR_JSP);
+            }
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (InvalidKeyException e) {

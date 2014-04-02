@@ -10,9 +10,6 @@
         <input type="submit" id="enter" value="Enter chat">
     </form>
 </div>
-<div>
-   <h2>Log</h2>
-   <%= request.getAttribute("log") %>
-</div>
+
 </body>
 </html>

@@ -2,12 +2,14 @@ package com.kture.bpid.web;
 
 import com.kture.bpid.DHExchangeUtil;
 
+import javax.crypto.spec.DHParameterSpec;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.KeyPair;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +30,8 @@ public class ChatServlet extends HttpServlet {
         String user = request.getParameter("user");
         DHExchangeUtil dhUtil = (DHExchangeUtil) context.getAttribute("DHUtil");
 
+        byte[] publicKey;
+
         try{
         switch (count) {
             case 0:
@@ -45,9 +49,17 @@ public class ChatServlet extends HttpServlet {
                             String s;
                             byte[] ciphertext = message.getBytes();
                             if(user.equalsIgnoreCase("Alice")) {
+                                KeyPair aliceKpair = dhUtil.getAliceKpair();
+                                publicKey = aliceKpair.getPublic().getEncoded();
+                                request.setAttribute("publicKey", new String(publicKey, "UTF-8"));
+
                                 s = dhUtil.aliceChiperDecrypt(ciphertext);
                             }
                             else if(user.equalsIgnoreCase("Bob")) {
+                                KeyPair bobKpair = dhUtil.getBobKpair();
+                                publicKey = bobKpair.getPublic().getEncoded();
+                                request.setAttribute("publicKey", new String(publicKey, "UTF-8"));
+
                                 s = dhUtil.bobChiperDecrypt(ciphertext);
                             }
                             else {
@@ -83,8 +95,8 @@ public class ChatServlet extends HttpServlet {
         String user = request.getParameter("user");
         String publicKey = request.getParameter("publicKey");
 
-        System.out.println(user.toUpperCase() + ": sends message [" +
-                text + "], publicKey [" + publicKey + "]");
+        System.out.println(user.toUpperCase() + ": sends message [" + text);
+        System.out.println("PublicKey [" + publicKey + "]");
         if(count == 2) {
             try {
                 //System.out.println("Clear text: " + text);

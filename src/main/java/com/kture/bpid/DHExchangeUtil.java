@@ -245,4 +245,11 @@ public class DHExchangeUtil {
     // The base used with the SKIP 1024 bit modulus
     private static final BigInteger skip1024Base = BigInteger.valueOf(2);
 
+    public KeyPair getAliceKpair() {
+        return aliceKpair;
+    }
+
+    public KeyPair getBobKpair() {
+        return bobKpair;
+    }
 }
